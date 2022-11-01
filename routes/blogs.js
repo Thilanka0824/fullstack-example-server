@@ -43,11 +43,27 @@ const sampleBlogs = [
 ];
 
 /* GET blogs listing. */
-router.get('/all', function (req, res, next) {
-    res.json({
-        success: true,
-        blogs: sampleBlogs
-    });
+router.get('/all', async function (req, res, next) {
+
+    try {
+        const blogPost = await db()
+            .collection('blogPosts')
+            .findOne({
+                id: {
+                    $exists: true,
+                },
+            });
+        res.json({
+            success: true,
+            post: blogPost,
+        });
+    } catch (err) {
+        console.log(err.name)
+        res.json({
+            success: false,
+            error: err.toString()
+        })
+    }
 });
 
 module.exports = router;

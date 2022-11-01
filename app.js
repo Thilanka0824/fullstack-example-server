@@ -10,9 +10,9 @@ require("dotenv").config();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var blogsRouter = require('./routes/blogs');
-
+ // always put before express
 var { mongoConnect } = require('./mongo.js');
-mongoConnect(); // always put before express
+mongoConnect();
 var app = express();
 
 //CORS 
