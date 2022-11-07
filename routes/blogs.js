@@ -37,7 +37,7 @@ router.get("/get-one/:id", async (req, res) => {
     });
     console.log(blogPost);
   } catch (error) {
-    console.error(err);
+    // console.error(err);
     res.json({
       success: false,
       error: err.toString(),
@@ -113,7 +113,7 @@ router.put("/update-one/:id", async (req, res) => {
 
 router.delete("/delete-one/:id", async (req, res) => {
   try {
-    const idParam = req.params.id
+    const idParam = req.params.id //getting the req from the url
 
     const deletePost = await db().collection('blogPosts').deleteOne({
       id: idParam
@@ -125,7 +125,8 @@ router.delete("/delete-one/:id", async (req, res) => {
     })
 
 
-  } catch (error) {
+  } 
+  catch (error) {
     res.json({
       success: false,
       error: error.toString()
